@@ -7,7 +7,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
 	cors: {
-		origin: ["https://chat-spark.onrender.com/"],
+		origin: ["http://localhost:5173"],
 		methods: ["GET", "POST"],
 	},
 });
@@ -22,7 +22,7 @@ io.on("connection", (socket) => {
     console.log("a user connected", socket.id);
 
     const userId = socket.handshake.query.userId;
-    console.log("User ID from handshake:", userId);
+    // console.log("User ID from handshake:", userId);
 
     if (userId != "undefined") {
         userSocketMap[userId] = socket.id;
